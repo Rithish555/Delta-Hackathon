@@ -15,7 +15,6 @@ export const Items = () => {
         const getfileitems = async ()=>{
             try{
                 const files = await axi.get(`uploads/parent/${folderid}`);
-                console.log(files);
                 setfiledata(files.data);
             }
             catch(err){
@@ -32,7 +31,6 @@ export const Items = () => {
             form.append("folderid",folderid);
             form.append("userid",id)
             const fileupload = await axi.post('uploads/file',form);
-            // window.location.reload();
         }
         catch(err){
             console.log(err);
@@ -51,8 +49,6 @@ export const Items = () => {
     async function approve(fileid){
         try{
             const app = await axi.patch("/uploads/approve",{role,fileid});
-            console.log("ggggg")
-            console.log(app.data);
         }
         catch(err){
             console.log(err);
@@ -75,8 +71,8 @@ export const Items = () => {
                         <div className='text-6xl'>📄</div>
                         <div>{ele.filename.slice(0,15)+'...'}</div>
                         <div className='text-center w-20 text-sm border border-black p-2 rounded-2xl'><a href={`http://localhost:5000/uploaded/${ele.filename}`} target='_blank'>View</a></div>
-                        <div className='text-sm border border-black p-2 rounded-2xl cursor-pointer w-20 text-center' onClick={()=>fileclick(ele.filename,ele._id)}>Edit</div>
-                        <div className='text-sm border border-black p-2 rounded-2xl cursor-pointer w-20 text-center' onClick={()=>approve(ele._id)}>Approve</div>
+                        {ele.approvedby!="Approver" && <><div className='text-sm border border-black p-2 rounded-2xl cursor-pointer w-20 text-center' onClick={()=>fileclick(ele.filename,ele._id)}>Edit</div>
+                        <div className='text-sm border border-black p-2 rounded-2xl cursor-pointer w-20 text-center' onClick={()=>approve(ele._id)}>Approve</div></>}
                         </div>
                     )
                     })}

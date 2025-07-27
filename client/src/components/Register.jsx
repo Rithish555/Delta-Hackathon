@@ -14,10 +14,7 @@ export const Register = () => {
     async function registeruser(e){
         e.preventDefault();
         try{
-            console.log(roles)
             const reg = await axi.post("/user/register",{email,password,roles});
-            console.log(reg);
-            console.log(reg.data);
             setmail(reg.data.email);
             setid(reg.data._id);
             setRole(reg.data.role);
@@ -45,10 +42,7 @@ export const Register = () => {
             </div>
             <div className='flex gap-4 mt-2'>
                 <label htmlFor="role" className='ml-7'>Role</label>
-                <select name="role" id="role" value={roles} onChange={(e)=>{
-                    console.log(e.target.value);
-                    setroles(e.target.value);
-                    }}>
+                <select name="role" id="role" value={roles} onChange={(e)=>{setroles(e.target.value)}}>
                     <option value="Creator">Creator</option>
                     <option value="Reviewer">Reviewer</option>
                     <option value="Approver">Approver</option>

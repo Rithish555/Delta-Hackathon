@@ -24,14 +24,7 @@ export const Edit = () => {
 
     async function savechanges(){
         try{
-            if(textdata == newtext){
-                const changedata = await axi.patch('/uploads/changes',{feedback,comment,fileid})
-                console.log(changedata.data);
-            }
-            else{
-                const changedata = await axi.patch('/uploads/changes',{feedback,comment,textdata,fileid})
-                console.log(changedata.data);
-            }
+            const changedata = await axi.patch('/uploads/changes',{feedback,comment,fileid})
         }
         catch(err){
             console.log(err);

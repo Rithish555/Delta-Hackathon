@@ -15,7 +15,6 @@ export const Dashboard = () => {
     const getdata = async()=>{
       try{
         const pdata = await axi.get('/uploads/projects/data');
-        console.log(pdata);
         setprojdata(pdata.data);
       }
       catch(err){
@@ -52,7 +51,7 @@ export const Dashboard = () => {
         {projdata && projdata.map((ele)=>{
           return(
             <div key={ele._id}>
-              <div className='text-3xl' onClick={()=>getfolder(ele._id)}>📂</div>
+              <div className='text-3xl cursor-pointer' onClick={()=>getfolder(ele._id)}>📂</div>
               <div>{ele.projname}</div>
             </div>
           )

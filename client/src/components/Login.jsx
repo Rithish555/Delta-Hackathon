@@ -15,7 +15,6 @@ export const Login = () => {
         e.preventDefault();
         try{
             const user = await axi.post("/user/login",{email,password});
-            console.log(user);
             setmail(user.data.email);
             setid(user.data._id);
             setRole(user.data.role);

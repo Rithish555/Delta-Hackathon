@@ -13,6 +13,7 @@ export const Header = () => {
                 <div className='p-2 py-3 rounded-2xl bg-red-500 w-20 text-center text-white'><Link to={'/user/login'}>Login</Link></div>
                 <div className='p-2 py-3 rounded-2xl bg-red-500 w-20 text-center text-white'><Link to={'/user/register'}>Register</Link></div>
             </div>}
+            <div className='p-2 py-3 rounded-2xl bg-red-500 w-20 text-center text-white'><Link to={'/'}>Home</Link></div>
         </div>
     </div>
   )

@@ -49,10 +49,8 @@ export const uploadfile = async (req,res)=>{
 export const getfiledata = async(req,res)=>{
     try{
         const {fn} = req.body;
-        console.log(fn.filename)
         const data = fs.readFile(`../server/uploaded/${fn.filename}`,'utf-8',(err,datatext)=>{
             if(err) console.log(err);
-            console.log(datatext);
             res.send(datatext);
         });
     }
@@ -62,14 +60,10 @@ export const getfiledata = async(req,res)=>{
 }
 
 export const modifycontent = async(req,res)=>{
-    let values = {};
-    const {feedback,comment,textdata,fileid} = req.body;
+    const {feedback,comment,fileid} = req.body;
     const user = await Files.findById(fileid);
     user.comments = comment;
     user.feedback = feedback;
-    if(textdata){
-        fs.writeFile(`../server/uploaded/${user.filename}`)
-    }
     await user.save();
 }
 
